@@ -1,27 +1,29 @@
-# General course assignment
+# Nemocnice Lake County, Illinois
 
-Build a map-based application, which lets the user see geo-based data on a map and filter/search through it in a meaningfull way. Specify the details and build it in your language of choice. The application should have 3 components:
+  
 
-1. Custom-styled background map, ideally built with [mapbox](http://mapbox.com). Hard-core mode: you can also serve the map tiles yourself using [mapnik](http://mapnik.org/) or similar tool.
-2. Local server with [PostGIS](http://postgis.net/) and an API layer that exposes data in a [geojson format](http://geojson.org/).
-3. The user-facing application (web, android, ios, your choice..) which calls the API and lets the user see and navigate in the map and shows the geodata. You can (and should) use existing components, such as the Mapbox SDK, or [Leaflet](http://leafletjs.com/).
+**Opis aplikácie**  <br>
 
-## Example projects
+Webová aplikácia zobrazuje súvislosť medzi priemerným vekom úmrtia a počtom nemocníc v časti Lake County štátu Illinois, USA. Aplikácia má 3 scenáre:
 
-- Showing nearby landmarks as colored circles, each type of landmark has different circle color and the more interesting the landmark is, the bigger the circle. Landmarks are sorted in a sidebar by distance to the user. It is possible to filter only certain landmark types (e.g., castles).
+  
 
-- Showing bicykle roads on a map. The roads are color-coded based on the road difficulty. The user can see various lists which help her choose an appropriate road, e.g. roads that cross a river, roads that are nearby lakes, roads that pass through multiple countries, etc.
+1.  **Priemerný vek úmrtia:** vyfarbenie okresov Lake County podľa priemerného veku úmrtia v danom okrese.
 
-## Data sources
+2.  **Štatistika nemocníc:** zobrazuje počet nemocníc a iných zdravotných zariadení v okrese v súvislosti s priemerným vekom úmrtia.
 
-- [Open Street Maps](https://www.openstreetmap.org/)
+3.  **Najbližšia nemocnica:** vyhľadanie najbližšej nemocnice buď zadaním štartovacej adresy, alebo priamo kliknutím na mapu.
 
-## My project
+  
 
-Fill in (either in English, or in Slovak):
+**Zdroje dát**  <br>
 
-**Application description**: `<fill in>`
+*  [Lake County](https://www.openstreetmap.org)
+*  [nemocnice](https://www.openstreetmap.org)
+* [štatistika úmrtnosti](https://catalog.data.gov/dataset/mortality-rates-b7080)
 
-**Data source**: `<fill in>`
+  
 
-**Technologies used**: `<fill in>`
+**Použité technológie**  <br>
+
+* Python, Flask, Javascript, Mapbox, PostgreSQL, postgis, ogr2ogr, Leaflet.js, osm2pgsql
