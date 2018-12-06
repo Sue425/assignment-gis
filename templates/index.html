@@ -1,0 +1,58 @@
+<!doctype html>
+
+<head>
+    <title>Lake County, Illinois, USA</title>
+    
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.1/mapbox-gl.css' rel='stylesheet'/>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet'/>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
+    <link href="../static/styles.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+</head>
+<body onload="loadCounty()">
+    <div class="app-container">
+        <div class="controls">
+            <h3>Nemocnice</h3>
+            <button onclick="loadHospitals()" class="btn btn-info">Zobraz všetky nemocnice!</button>
+            <hr><br>
+            <h3>Najbližšia nemocnica</h3>
+            <label>Adresa:</label>
+            <input id="address" type="text" class="aligned">
+            <label>Z mapy:</label>
+            <input type="checkbox" class="aligned" id="address-from-map">
+            <br>
+            <button onclick="loadNearestHospital()" class="btn btn-info">Zobraz!</button>
+            <hr><br>
+            <h3>Štatistiky</h3>
+            <button onclick="loadStats()" class="btn btn-info">Zobraz štatistiku!</button>
+            <button onclick="loadMortality()" class="btn btn-info">Vyfarbiť!</button>
+            <hr><br><br><br><br>
+            <button onclick="reset()" class="btn btn-secondary">Reset</button>
+        </div>
+        <div id="map" style='width: 970px; height: 735px;'>
+            <div class="legend-div">
+                <p><strong>Priemerný vek úmrtia:</strong></p>
+                <span class="yellow">...</span><span>pod 73</span><br>
+                <span class="green">...</span><span>73 a viac</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        L.mapbox.accessToken = 'pk.eyJ1Ijoic3VlNDIiLCJhIjoiY2pueXA4dDRpMTg0NzN3a2d2bHZuemhvdiJ9.LuM5aP5vun4FrghZWwd5RA';
+        var map = L.mapbox.map('map', 'mapbox.streets', {zoomControl: false}).setView([42.327258, -87.997149], 11);
+        new L.Control.Zoom({position: 'topright'}).addTo(map);
+
+        map.on('click', function(e) {
+            if (document.getElementById("address-from-map").checked) {
+                var latitude = e.latlng.lat;
+                var longitude = e.latlng.lng;
+                addPinToCoords(longitude, latitude);
+            }
+        });
+    </script>
+</body>
